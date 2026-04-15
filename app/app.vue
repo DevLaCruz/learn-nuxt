@@ -8,13 +8,15 @@ count.value = 20
 </script> -->
 
 <template>
-  <NuxtLayout>
+  <UApp>
+    <NuxtLayout>
     <!-- <h1>Hello Word</h1>
     
     <button @click="count++">Click me: {{ count }}</button>
      -->
      <NuxtPage/>
   </NuxtLayout>
+  </UApp>
 </template>
 
 <style>

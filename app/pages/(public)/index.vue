@@ -1,5 +1,14 @@
 <template>
-    <div class="">
+    <!-- <div class="">
         <h1>Home page</h1>
-    </div>
+        <UButton icon="i-lucide-rocket" size="md" color="primary" variant="solid">Button</UButton>
+    </div> -->
+
+    <HomeCTA/>
+
+    <HomeFeatures/>
+
+    <HomeTestimonials/>
+
+    <HomeStack/>
 </template>
