@@ -7,12 +7,36 @@ export default defineNuxtConfig({
     '~/assets/css/main.css'
   ],
 
+  app: {
+    head: {
+      title: 'My service market',
+      meta:[
+        {
+          name:'description',
+          content: 'Welcome to mi service market'
+        }
+      ]
+    }
+  },
+
   modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxt/image'],
 
+  // ssr: false,
+  // nitro: {
+  //   preset: 'static',
+  //   static: true
+  // }
 
-  ssr: false,
+
+  //Prerender - All the site
+
   nitro: {
-    preset: 'static',
-    static: true
+    prerender: {
+      routes: ['/', '/about', '/contact', '/pricing', '/pricing/about', '/products'],
+      ignore: ['/dashboard', '/dashboard/**'],
+
+      //Habilitar el crawling para descubrir enlaces autamticamente
+      crawlLinks: true
+    }
   }
 })
