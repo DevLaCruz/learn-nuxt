@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { ButtonProps } from '@nuxt/ui'
 
+const { data} = await useFetch('/api/hello-world')
+
 const links = ref<ButtonProps[]>([
   {
     label: 'Get started',
@@ -17,8 +19,8 @@ const links = ref<ButtonProps[]>([
 
 <template>
   <UPageCTA
-    title="Trusted and supported by our amazing community"
-    description="We've built a strong, lasting partnership. Their trust is our driving force, propelling us towards shared success."
+    :title="data?.message"
+    :description="data?.description"
     orientation="horizontal"
     :links="links"
   >
