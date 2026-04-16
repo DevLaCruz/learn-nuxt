@@ -46,7 +46,7 @@ const cards = ref([
 
 <template>
 
-
+<div>
    <UPageSection
     title="Services"
     description="Our services"
@@ -71,5 +71,6 @@ const cards = ref([
       />
     </UPageCard>
   </UPageGrid>
+  </div>
 </template>
 

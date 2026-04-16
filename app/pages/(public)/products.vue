@@ -15,6 +15,8 @@
 <template>
   <div>
     Page: products
+
+  <UButton label="primary" color="primary" />
   </div>
 </template>
 

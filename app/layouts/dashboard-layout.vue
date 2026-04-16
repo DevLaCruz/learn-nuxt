@@ -1,7 +1,9 @@
 <template>
+<UDashboardGroup
+storage="local"
+storage-key="dashborad-sidebar"
+:permission="true"
 
-    <div>
-        <h1>Layout: DashboardLayout</h1>
-        <slot/>
-    </div>
+>
+</UDashboardGroup>
 </template>

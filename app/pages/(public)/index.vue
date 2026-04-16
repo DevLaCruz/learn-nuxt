@@ -6,9 +6,9 @@
 
     <HomeCTA/>
 
-    <HomeFeatures/>
+    <HomeFeatures class="mt-10"/>
 
-    <HomeTestimonials/>
+    <HomeTestimonials class="mt-10"/>
 
-    <HomeStack/>
+    <HomeStack class="my-10"/>
 </template>

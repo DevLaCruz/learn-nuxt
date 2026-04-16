@@ -137,13 +137,13 @@ const testimonials = ref([
 
 <template>
 
+<div>
+
     <UPageSection
     title="Testimonials"
     description="Our testimonials"
     headline="Testimonials"
     />
-
-
 
   <UPageColumns>
     <UPageCard
@@ -167,5 +167,7 @@ const testimonials = ref([
       </template>
     </UPageCard>
   </UPageColumns>
+
+  </div>
 </template>
 
