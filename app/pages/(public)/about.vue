@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 useSeoMeta({
   title: 'About | Mi tienda de servicios',
   description:
@@ -18,7 +18,7 @@ useSeoMeta({
 </script>
 
 <template>
-    <div class="">
-        <h1>About Page</h1>
-    </div>
+  <div>
+    <h1>About Page</h1>
+  </div>
 </template>

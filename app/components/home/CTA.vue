@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import type { ButtonProps } from '@nuxt/ui'
+import type { ButtonProps } from '@nuxt/ui';
 
-const { data} = await useFetch('/api/hello-world')
+const { data } = await useFetch('/api/hello-world');
 
 const links = ref<ButtonProps[]>([
   {
-    label: 'Get started',
-    color: 'neutral'
+    label: 'Empezando',
+    color: 'neutral',
   },
   {
-    label: 'More Info',
+    label: 'Más información',
     color: 'neutral',
     variant: 'subtle',
-    trailingIcon: 'i-lucide-arrow-right'
-  }
-])
+    trailingIcon: 'i-lucide-arrow-right',
+  },
+]);
 </script>
 
 <template>
@@ -30,10 +30,10 @@ const links = ref<ButtonProps[]>([
       height="364"
       alt="Illustration"
       class="w-full rounded-lg"
-      loading="lazy"
     />
 
-
-    <template #body></template>
+    <!-- <template #body>
+      <h1>Hola</h1>
+    </template> -->
   </UPageCTA>
 </template>

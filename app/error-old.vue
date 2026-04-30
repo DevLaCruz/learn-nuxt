@@ -10,9 +10,9 @@
 
         <!-- Mensaje de error -->
         <div class="error-message">
-          <h2>{{ $props.error.message || 'Página no encontrada' }}</h2>
+          <h2>{{ $props.error.message }}</h2>
           <p>
-            {{$props.error.data?.myOtherField || 'Lo sentimos, la página que buscas no existe.'}}
+            {{ $props.error.data?.myOtherField }}
           </p>
         </div>
 

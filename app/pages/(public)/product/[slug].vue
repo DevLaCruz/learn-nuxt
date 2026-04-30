@@ -228,6 +228,7 @@ const totalPrice = computed(() => {
       <h2 class="text-2xl font-bold text-gray-900 mb-6">
         Productos relacionados
       </h2>
+
       <LazyProductsGrid
         hydrate-on-visible
         :products="products.filter((p) => p.id !== product?.id).slice(0, 3)"

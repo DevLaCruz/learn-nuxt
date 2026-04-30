@@ -1,18 +1,3 @@
-<!-- <script setup lang="ts">
-// definePageMeta({
-//   layout: 'dashboard-layout',
-// })
-</script>
-
-<template>
-  <div>
-    Page: dashboard
-  </div>
-</template>
-
-<style scoped></style> -->
-
-
 <template>
   <div class="space-y-6">
     <!-- Header -->

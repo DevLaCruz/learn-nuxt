@@ -1,37 +1,33 @@
 <template>
-
-<nav>
+  <nav>
     <ul>
-        <li>
-            <NuxtLink to="/">Home</NuxtLink>
-        </li>
+      <li>
+        <NuxtLink to="/"> Home </NuxtLink>
+      </li>
 
-        <li>
-            <NuxtLink :to="{path:'about'}">About</NuxtLink>
-        </li>
-        <li>
-            <NuxtLink to="/pricing">Pricing</NuxtLink>
-        </li>
+      <li>
+        <NuxtLink :to="{ path: 'about' }"> About </NuxtLink>
+      </li>
 
-        <li>
-            <NuxtLink to="/contact">Contact</NuxtLink>
-        </li>
+      <li>
+        <NuxtLink to="/pricing"> Pricing </NuxtLink>
+      </li>
 
-        <li>
-            <NuxtLink to="/products">Products</NuxtLink>
-        </li>
+      <li>
+        <NuxtLink to="/contact"> Contact </NuxtLink>
+      </li>
 
-        <li>
-            <NuxtLink to="/dashboard">Dashboard</NuxtLink>
-        </li>
-
+      <li>
+        <NuxtLink to="/products"> Products </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/dashboard"> Dashboard </NuxtLink>
+      </li>
     </ul>
-
-</nav>
-
+  </nav>
 </template>
 
-<style>
+<style scoped>
 nav {
   padding: 20px;
   background-color: rgba(0, 220, 130, 0.1);

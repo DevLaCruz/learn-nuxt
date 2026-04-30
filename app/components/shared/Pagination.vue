@@ -3,6 +3,7 @@ defineProps<{
   total: number;
   modelValue: number;
 }>();
+
 const router = useRouter();
 const route = useRoute();
 const currentPage = computed(() => {
