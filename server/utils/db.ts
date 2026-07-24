@@ -1,9 +1,15 @@
-import Database from 'better-sqlite3';
-import { drizzle } from 'drizzle-orm/better-sqlite3';
-import { join } from 'node:path';
+import { createClient } from '@libsql/client';
+import { drizzle } from 'drizzle-orm/libsql';
+import { mkdirSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import * as schema from '../db/schema';
 
-const sqlite = new Database(join(process.cwd(), 'data/database.sqlite'));
+const dbPath = join(process.cwd(), 'data', 'database.sqlite');
+mkdirSync(dirname(dbPath), { recursive: true });
 
-export const db = drizzle(sqlite, { schema });
+const client = createClient({
+  url: `file:${dbPath}`,
+});
+
+export const db = drizzle({ client, schema });
 export default db;

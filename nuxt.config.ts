@@ -3,6 +3,14 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
 
+  vite: {
+    server: {
+      watch: {
+        ignored: ["**/.git/**", "**/node_modules/**"],
+      },
+    },
+  },
+
   css: ["~/assets/css/main.css"],
 
   app: {
@@ -25,23 +33,11 @@ export default defineNuxtConfig({
     "@nuxt/ui",
   ],
 
-  // SPA - Single Page Application
-  // ssr: false,
-  // nitro: {
-  //   preset: 'static',
-  //   static: true,
-  // },
-
-  // Prender - Todo el sitio
   nitro: {
     prerender: {
       routes: ["/", "/about", "/contact", "/pricing", "/products"],
       ignore: ["/dashboard", "/dashboard/**"],
-      // Habilitar el crawling para descubrir enlaces automáticamente
       crawlLinks: true,
-    },
-    externals: {
-      external: ["better-sqlite3"],
     },
   },
 });
