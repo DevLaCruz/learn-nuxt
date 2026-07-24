@@ -7,6 +7,17 @@ definePageMeta({
 });
 
 const toast = useToast();
+// las cookies son informacion que siempre viaja de cada petición, son portadas por cada request, las cookies siempre viajan en todas las peticiones
+
+const cookieLoginEmail = useCookie<string|null>('login_email', {
+  sameSite:'strict',
+  maxAge: 60 * 60 * 24 * 30
+})
+
+const {login} = useAuthentication()
+
+const isPosting = ref(false)
+
 
 const fields: AuthFormField[] = [
   {
@@ -15,6 +26,7 @@ const fields: AuthFormField[] = [
     label: 'Correo electrónico',
     placeholder: 'Ingresa tu correo electrónico',
     required: true,
+    defaultValue: cookieLoginEmail.value || ''
   },
   {
     name: 'password',
@@ -27,6 +39,7 @@ const fields: AuthFormField[] = [
     name: 'remember',
     label: 'Recuérdame',
     type: 'checkbox',
+    defaultValue: Boolean(!!cookieLoginEmail.value)
   },
 ];
 
@@ -52,12 +65,32 @@ const schema = z.object({
   password: z
     .string('La contraseña es requerida')
     .min(8, 'Debe tener al menos 8 caracteres'),
+  remember: z.boolean().optional()
 });
 
 type Schema = z.output<typeof schema>;
 
-function onSubmit(payload: FormSubmitEvent<Schema>) {
-  console.log('Submitted', payload);
+async function onSubmit(payload: FormSubmitEvent<Schema>) {
+  const {email, password, remember} = payload.data
+  isPosting.value = true
+
+  if(remember) {
+    cookieLoginEmail.value = email
+  }else{
+    cookieLoginEmail.value = null
+  }
+
+
+  
+  const isSuccessful = await login(email, password)
+
+  if(!isSuccessful){
+    toast.add({
+      title: 'Login failed',
+      description:'credenciales no valid'
+    })
+  }
+  
 }
 </script>
 
@@ -72,6 +105,8 @@ function onSubmit(payload: FormSubmitEvent<Schema>) {
         :fields="fields"
         :providers="providers"
         @submit="onSubmit"
+        :loading="isPosting"
+        :disabled="isPosting"
         :ui="{
           leadingIcon: 'text-5xl',
         }"

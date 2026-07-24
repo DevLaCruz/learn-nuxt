@@ -20,10 +20,9 @@ export const products = sqliteTable("products", {
   description: text("description").notNull(),
   price: integer("price").notNull(),
 
-  // Arrays como JSON string
-  images: text("images", { mode: "json" }).notNull(),
-
-  tags: text("tags", { mode: "json" }).notNull(),
+  // Ahora TypeScript sabrá que son arrays de strings
+  images: text("images", { mode: "json" }).$type<string[]>().notNull(),
+  tags: text("tags", { mode: "json" }).$type<string[]>().notNull(),
 
   createdAt: text("created_at")
     .notNull()
@@ -31,10 +30,43 @@ export const products = sqliteTable("products", {
 
   updatedAt: text("updated_at")
     .notNull()
-    .default(sql`(CURRENT_TIMESTAMP)`),
+    .default(sql`(CURRENT_TIMESTAMP)`)
+    // Se actualizará automáticamente, igual que en users
+    .$onUpdate(() => sql`(CURRENT_TIMESTAMP)`),
 });
 
 
+export const users = sqliteTable('users', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  email: text('email').notNull().unique(),
+  password: text('password').notNull(),
+  name: text('name').notNull(),
+  
+  // Guardamos el array como JSON y le decimos a TypeScript que es un string[]
+  roles: text('roles', { mode: 'json' }).$type<string[]>().notNull(),
+  
+  createdAt: text('created_at')
+    .notNull()
+    .default(sql`(CURRENT_TIMESTAMP)`),
+    
+  updatedAt: text('updated_at')
+    .notNull()
+    .default(sql`(CURRENT_TIMESTAMP)`)
+    // Emula el @updatedAt de Prisma actualizando el valor en cada UPDATE
+    .$onUpdate(() => sql`(CURRENT_TIMESTAMP)`), 
+});
+
+
+export type Product = typeof products.$inferSelect;
+export type NewProduct = typeof products.$inferInsert;
 
 export type SiteReview = typeof siteReviews.$inferSelect;
 export type NewSiteReview = typeof siteReviews.$inferInsert;
+// Extrae los tipos basándose en tu esquema
+export type User = typeof users.$inferSelect;
+export type NewUser = typeof users.$inferInsert;
+
+// Ejemplo: TypeScript ya sabrá que 'id' es un number y 'email' un string
+function getUser(user: User) {
+  console.log(user.email);
+}
