@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Testing in my counter > should match snapshot 1`] = `
+"<section>
+  <h3>Counter 5</h3>
+  <h3 data-testid="square-label">Square: 25</h3><!-- <h4>{{ text }}</h4> -->
+  <div class=""><button>+1</button><button data-testid="decrement-label">-1</button></div>
+</section>"
+`;

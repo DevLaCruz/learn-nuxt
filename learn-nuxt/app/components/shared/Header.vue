@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '#ui/types';
 
-const route = useRoute();
+const route = useRoute()
+const {isAuthenticated, logout} = useAuthentication()
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
@@ -48,6 +49,16 @@ const responsiveMenu = ref([
 
     <UNavigationMenu :items="items" />
 
+   <ClientOnly>
+     <UNavigationMenu :items="[
+      {
+    label: 'Dashboard',
+    to: '/dashboard'
+  },
+    ]" />
+   </ClientOnly>
+
+
     <template #right>
       <UColorModeButton />
 
@@ -62,13 +73,26 @@ const responsiveMenu = ref([
         />
       </UTooltip>
 
-      <UButton
+      <ClientOnly>
+        <!-- Para poder renderizar el botón solo en el cliente -->
+
+        <UButton
+        v-if="!isAuthenticated"
         color="primary"
         variant="solid"
         icon="i-heroicons-user-circle"
         to="/login"
         label="Login"
       />
+
+      <UButton
+        v-else
+        variant="ghost"
+        icon="i-heroicons-user-circle"
+        label="Cerrar Sesión"
+        @click="logout"
+      />
+      </ClientOnly>
     </template>
 
     <template #body>

@@ -10,6 +10,7 @@ export const useAuthentication = () => {
             body: {email, password}
         });
 
+        await fetch()
         navigateTo('/?message=Login successful')
 
         return true
@@ -38,12 +39,14 @@ return{
 
 
     // Getters
-    
+    isAuthenticated: loggedIn,
+    isAdmin: computed(()=> user),
 
     // Methods, Actions
     fetch,
     login,
-    register
+    register,
+    logout
 }
 
 }

@@ -1,49 +1,166 @@
-# Learn Nuxt - Monorepo Educativo
+# Repo Educativo de Vue y Nuxt
 
-Este repositorio contiene **dos proyectos separados** organizados como monorepo con `pnpm workspace`, cada uno con un propósito educativo distinto:
-
----
-
-## 📁 Estructura del Monorepo
-
-```
-LearnNuxt/
-├── vue-essentials/      # Proyecto 1: Fundamentos de Vue 3
-├── learn-nuxt/          # Proyecto 2: Aplicación completa con Nuxt 4
-├── pnpm-workspace.yaml  # Configuración de workspaces
-└── package.json         # Scripts raíz y dependencias compartidas
-```
+Este repositorio contiene **cuatro proyectos Node.js separados** + un ejemplo sin Node, cada uno con un propósito educativo distinto:
 
 ---
 
-## 🎯 Proyecto 1: `vue-essentials` — Fundamentos de Vue 3
+## 📁 Estructura
 
-> **Objetivo:** Repasar y consolidar los conceptos básicos de **Vue 3 + TypeScript + Vite** antes de saltar a Nuxt.
+```
+LearnVueAndNuxt/
+├── intro-vue/           # 📚 Vue 3 sin Node (CDN, script setup en HTML)
+├── vue-essentials/      # 🎯 Vue 3 + Vite + TypeScript + Vitest
+├── indecision-app       # 🎯 Vue 3 + Vite + TS + Vitest + ESLint + Oxlint + Prettier
+├── pokemon-game/        # 🎮 Vue 3 + Vite + TS + Vitest + TailwindCSS + Axios
+└── learn-nuxt/          # 🚀 Nuxt 4 + Nuxt UI + Drizzle + Auth + SQLite + Tailwind
+```
+
+> **Nota:** `intro-vue` **no es un proyecto Node.js** — es un ejemplo sencillo de Vue 3 vía CDN (script setup en HTML) para entender los conceptos básicos sin herramienta de build.
+
+---
+
+## 🎯 Proyecto 1: `intro-vue` — Vue 3 sin Node (CDN)
+
+> **Objetivo:** Entender la reactividad, componentes y Composition API **sin tooling** (sin Vite, sin Node, sin build).
 
 ### Qué incluye
-- Vue 3 con **Composition API** y `<script setup>`
-- TypeScript estricto
-- Vite como bundler ultrarrápido
-- Estructura mínima para enfocarse en: reactividad (`ref`, `reactive`, `computed`), props/emits, composables, ciclo de vida, provide/inject, slots, componentes dinámicos
+- Vue 3 vía CDN (`<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js">`)
+- `<script setup>` en el propio HTML
+- Reactividad básica: `ref`, `reactive`, `computed`, `watch`
+- Componentes locales, props, emits, slots
+- Sin build, sin Node, sin TypeScript — solo HTML/JS puro
 
 ### Cuándo usarlo
-- Si vienes de Vue 2 u otros frameworks y necesitas refrescar la sintaxis moderna
-- Para practicar patrones de composición antes de añadir la complejidad de Nuxt (routing, SSR, server routes, etc.)
-- Como referencia rápida de "cómo se hace X en Vue puro"
+- Primer contacto con Vue 3 sin instalar nada
+- Probar reactividad en el navegador directo
+- Prototipos rápidos sin configuración
+
+### Cómo ejecutarlo
+```bash
+cd intro-vue
+# Abre index.html directamente en el navegador
+# O con un servidor estático simple:
+npx serve .   # o: python -m http.server
+```
+
+---
+
+## 🎯 Proyecto 2: `vue-essentials` — Fundamentos de Vue 3 + Vite + TS
+
+> **Objetivo:** Consolidar Vue 3 + Composition API + TypeScript + Vite antes de saltar a Nuxt.
+
+### Stack
+| Capa | Tecnología |
+|------|------------|
+| Framework | **Vue 3.5** (Composition API + `<script setup>`) |
+| Build | **Vite 7** |
+| Types | **TypeScript 5.9** (strict) |
+| Lint/Format | ESLint 10 + Prettier 3 |
+
+### Qué incluye
+- Reactividad: `ref`, `reactive`, `computed`, `watch`, `watchEffect`
+- Ciclo de vida: `onMounted`, `onUnmounted`, etc.
+- Props/Emits con `defineProps` / `defineEmits` tipados
+- Composables, `provide/inject`, slots, componentes dinámicos
+- TypeScript estricto (`strict: true`, `vue-tsc`)
 
 ### Comandos
 ```bash
 cd vue-essentials
 pnpm install
 pnpm dev        # http://localhost:5173
-pnpm build
+pnpm build      # Build producción (type-check + build)
+pnpm preview    # Preview build
 ```
 
 ---
 
-## 🚀 Proyecto 2: `learn-nuxt` — Aplicación Real con Nuxt 4
+## 🎯 Proyecto 3: `indecision-app` — Vue 3 + Testing + Linting completo
 
-> **Objetivo:** Construir una **aplicación completa tipo SaaS** (catálogo de productos, dashboard, autenticación, SSR/SSG, base de datos) usando todo el ecosistema Nuxt 4.
+> **Objetivo:** Proyecto Vue 3 completo con testing (Vitest), linting estricto (ESLint + Oxlint) y formateo (Prettier).
+
+### Stack
+| Capa | Tecnología |
+|------|------------|
+| Framework | **Vue 3.5** + **Vite 7** |
+| Types | **TypeScript 6** (strict) |
+| Test | **Vitest 4** + `@vue/test-utils` + JSDOM + Coverage (V8) |
+| Lint | **ESLint 10** + **Oxlint** + `eslint-plugin-vue` + `eslint-plugin-oxlint` |
+| Format | **Prettier 3** |
+| CSS | **TailwindCSS 4** (Vite plugin) |
+| Node | `^20.19.0 \|\| >=22.12.0` |
+
+### Scripts principales
+```bash
+cd indecision-app
+pnpm install
+pnpm dev           # Dev server
+pnpm build         # type-check + build
+pnpm preview       # Preview build
+pnpm test          # Vitest watch
+pnpm test:unit     # Vitest run
+pnpm coverage      # Coverage report
+pnpm type-check    # vue-tsc --build
+pnpm lint          # oxlint + eslint (con --fix)
+pnpm format        # Prettier write
+```
+
+---
+
+## 🎮 Proyecto 4: `pokemon-game` — Juego Vue 3 + Tailwind + Axios + Testing
+
+> **Objetivo:** Aplicación tipo juego (Pokédex / batalla) consumiendo API externa (PokéAPI) con UI moderna.
+
+### Stack
+| Capa | Tecnología |
+|------|------------|
+| Framework | **Vue 3.5** + **Vite 8** |
+| Types | **TypeScript 6** |
+| CSS | **TailwindCSS 4** (Vite plugin) |
+| HTTP | **Axios 1.15** |
+| UI extras | `canvas-confetti` |
+| Test | **Vitest 4** + JSDOM + Coverage |
+| Lint/Format | ESLint 10 + Oxlint + Prettier + TypeScript ESLint |
+| Node | `^20.19.0 \|\| >=22.12.0` |
+
+### Características
+- Consumo de **PokéAPI** (Axios + interceptors)
+- UI con **TailwindCSS 4** (nuevo engine, Vite plugin)
+- Animaciones con `canvas-confetti`
+- Testing unitario con Vitest + JSDOM + Coverage V8
+- Linting estricto: ESLint + Oxlint (rápido) + TypeScript ESLint
+- Formato consistente con Prettier
+
+### Estructura clave
+```
+pokemon-game/
+├── src/
+│   ├── components/      # Componentes UI (PokemonCard, BattleArena, etc.)
+│   ├── composables/     # usePokemon, useBattle, etc.
+│   ├── services/        # api.ts (axios instance + interceptors)
+│   ├── types/           # Tipos TypeScript (Pokemon, BattleState)
+│   └── views/           # Vistas principales
+├── tests/               # Vitest specs
+└── ...
+```
+
+### Comandos
+```bash
+cd pokemon-game
+pnpm install
+pnpm dev           # Dev server
+pnpm build         # type-check + build
+pnpm preview       # Preview build
+pnpm test:unit     # Vitest run
+pnpm lint          # oxlint + eslint --fix
+pnpm format        # Prettier write
+```
+
+---
+
+## 🚀 Proyecto 5: `learn-nuxt` — Aplicación Real con Nuxt 4 (Full-Stack)
+
+> **Objetivo:** Construir una **aplicación completa tipo SaaS** (catálogo, dashboard, auth, SSR/SSG, base de datos) con todo el ecosistema Nuxt 4.
 
 ### Stack principal
 | Capa | Tecnología |
@@ -52,7 +169,8 @@ pnpm build
 | UI | **Nuxt UI v4** + **TailwindCSS v4** |
 | Base de datos | **SQLite** (archivo local) vía **@libsql/client** (sin bindings nativos C++) |
 | ORM | **Drizzle ORM** + **Drizzle Kit** (migraciones + Studio visual) |
-| Validación | **Zod** |
+| Validación | **Zod v4** |
+| Auth | **nuxt-auth-utils** (JWT en cookie httpOnly) |
 | Herramientas | TypeScript, `tsx`, `pnpm`, ESLint 9 |
 
 ### Características implementadas
@@ -60,7 +178,7 @@ pnpm build
 - **Dashboard protegido** con layout propio y rutas bajo `/dashboard/**`
 - **API REST** bajo `server/api/` (productos, sugerencias por tags, reviews, auth login)
 - **Paginación reactiva** con composable `usePaginatedProducts`
-- **Componentes de UI** reutilizables: `UTable`, `UCard`, `UModal`, `UBadge`, `UImg`, pagination, breadcrumbs
+- **Componentes UI** reutilizables: `UTable`, `UCard`, `UModal`, `UBadge`, `UImg`, pagination, breadcrumbs
 - **Tema y color-mode** persistido (`@nuxt/color-mode`)
 - **Iconos** auto-importados (`@nuxt/icon` + Lucide / Heroicons / Simple Icons)
 - **Imágenes optimizadas** (`@nuxt/image`)
@@ -109,20 +227,31 @@ pnpm build           # Build producción (SSG + SSR híbrido)
 pnpm preview         # Previsualiza build de producción
 pnpm db:studio       # UI visual de Drizzle
 pnpm db:push         # Sincroniza schema → BD sin migraciones
+pnpm db:generate     # Genera migraciones Drizzle
 ```
 
 ---
 
 ## 🧭 Por qué esta separación
 
-| Aspecto | `vue-essentials` | `learn-nuxt` |
-|---------|------------------|--------------|
-| **Curva de aprendizaje** | Baja — solo Vue | Media/Alta — Vue + Nuxt + SSR + BD + UI |
-| **Foco** | Reactividad, componentes, composición | Arquitectura full-stack, routing, rendering modes, DX de Nuxt |
-| **Tiempo para empezar** | ~5 min | ~15 min (BD, seed, UI config) |
-| **Ideal para** | Repasar fundamentos, probar ideas rápido | Proyecto portfolio, aprender patrones reales de Nuxt 4 |
+| Aspecto | `intro-vue` | `vue-essentials` | `indecision-app` | `pokemon-game` | `learn-nuxt` |
+|---------|-------------|------------------|------------------|----------------|--------------|
+| **Node.js** | ❌ No | ✅ Sí | ✅ Sí | ✅ Sí | ✅ Sí |
+| **Build tool** | ❌ Ninguno | Vite | Vite | Vite | Nuxt/Nitro |
+| **TypeScript** | ❌ No | ✅ Strict | ✅ Strict | ✅ Strict | ✅ Strict |
+| **Testing** | ❌ No | ❌ No | ✅ Vitest | ✅ Vitest | ❌ No (por ahora) |
+| **Lint/Format** | ❌ No | ESLint+Prettier | ESLint+Oxlint+Prettier | ESLint+Oxlint+Prettier | ESLint 9 |
+| **CSS** | CDN/Inline | Vanilla CSS | Tailwind 4 | Tailwind 4 | Tailwind 4 + Nuxt UI |
+| **Backend/DB** | ❌ No | ❌ No | ❌ No | ❌ API externa | ✅ SQLite + Drizzle + Nitro |
+| **Auth** | ❌ No | ❌ No | ❌ No | ❌ No | ✅ JWT + Cookies |
+| **Curva aprendizaje** | Muy baja | Baja | Media | Media-Alta | Media-Alta |
+| **Foco** | Conceptos base Vue sin build | Fundamentos Vue+TS+Vite | Vue completo + Testing + Lint | App real + API + UI + Testing | Full-stack Nuxt 4 |
 
-> **Recomendación:** Si nunca usaste Composition API o `<script setup>`, empieza en `vue-essentials`. Si ya dominas Vue 3, ve directo a `learn-nuxt`.
+> **Recomendación de ruta de aprendizaje:**
+> 1. `intro-vue` → Conceptos base sin tooling
+> 2. `vue-essentials` → Vue 3 + TS + Vite fundamentos
+> 3. `indecision-app` / `pokemon-game` → Proyectos completos con testing, linting, APIs
+> 4. `learn-nuxt` → Full-stack con Nuxt 4 (SSR, BD, Auth, UI)
 
 ---
 
@@ -131,8 +260,8 @@ pnpm db:push         # Sincroniza schema → BD sin migraciones
 Desde la raíz puedes instalar todo de golpe:
 
 ```bash
-pnpm install          # Instala deps de ambos proyectos
-pnpm -r dev           # Levanta ambos en paralelo (si configurado)
+pnpm install          # Instala deps de los 4 proyectos Node
+pnpm -r dev           # Levanta todos en paralelo (si configurado en pnpm-workspace.yaml)
 ```
 
 Cada proyecto tiene su propio `package.json` y `node_modules` (gracias a `pnpm-workspace.yaml`), evitando conflictos de versiones entre Vue/Vite y Nuxt/Nitro.
