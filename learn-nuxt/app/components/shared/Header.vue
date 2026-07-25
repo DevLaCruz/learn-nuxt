@@ -2,7 +2,7 @@
 import type { NavigationMenuItem } from '#ui/types';
 
 const route = useRoute()
-const {isAuthenticated, logout} = useAuthentication()
+const {isAuthenticated, logout, isAdmin} = useAuthentication()
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
@@ -29,6 +29,8 @@ const items = computed<NavigationMenuItem[]>(() => [
     // to: 'https://github.com/nuxt/ui/releases',
     // target: '_blank',
   },
+
+  
 ]);
 
 const responsiveMenu = ref([
@@ -50,7 +52,9 @@ const responsiveMenu = ref([
     <UNavigationMenu :items="items" />
 
    <ClientOnly>
-     <UNavigationMenu :items="[
+     <UNavigationMenu 
+     v-if="isAdmin"
+     :items="[
       {
     label: 'Dashboard',
     to: '/dashboard'

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   layout: 'dashboard-layout',
+  middleware:'auth' // para mas de 1 middleware poner entre llaves
 });
 </script>
 

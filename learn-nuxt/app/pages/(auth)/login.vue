@@ -4,6 +4,7 @@ import type { FormSubmitEvent, AuthFormField } from '#ui/types';
 
 definePageMeta({
   layout: 'login-layout',
+  middleware: 'not-authenticated'
 });
 
 const toast = useToast();

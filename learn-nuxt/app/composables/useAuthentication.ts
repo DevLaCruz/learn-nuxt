@@ -40,7 +40,7 @@ return{
 
     // Getters
     isAuthenticated: loggedIn,
-    isAdmin: computed(()=> user),
+    isAdmin: computed(()=> user.value?.roles.includes('admin')),
 
     // Methods, Actions
     fetch,
