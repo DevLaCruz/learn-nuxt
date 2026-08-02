@@ -11,6 +11,7 @@
         </p>
       </div>
       <UButton
+      to="/dashboard/product/new"
         icon="i-lucide-plus"
         label="Agregar Producto"
         color="primary"
@@ -32,6 +33,8 @@
 import { h, resolveComponent } from 'vue';
 import type { TableColumn } from '@nuxt/ui';
 const UBadge = resolveComponent('UBadge');
+const NuxtLink = resolveComponent('NuxtLink');
+
 
 const { products, currentPage, perPage, total } = await usePaginatedProducts();
 
@@ -71,13 +74,23 @@ const columns: TableColumn<Product>[] = [
   {
     accessorKey: 'name',
     header: 'Nombre',
-    cell: ({ row }) => row.getValue('name'),
+    cell: ({ row }) => {
+      const productName = row.getValue('name')
+      const productId = row.getValue('id')
+
+      return h(NuxtLink, {
+        to: `/dashboard/product/${productId}`,
+        class: 'text-blue-500 hover:text-blue-700 underline cursor-pointer'
+      },
+    ()=> productName)
+    },
   },
   {
     accessorKey: 'description',
     header: 'Descripción',
     cell: ({ row }) => {
       return h(
+        // Usamos h para renderizar componentes de forma dinamica
         'div',
         {
           style:
