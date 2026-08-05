@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
   if (!hasAdminRole) {
     throw createError({
       statusCode: 401,
-      message: 'Unauthorized',
+      message: `Unauthorized`,
     });
   }
 });

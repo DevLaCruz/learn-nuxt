@@ -10,7 +10,7 @@ Este es un proyecto educativo completo diseñado para aprender y practicar **Nux
 - **UI & Estilos:** [Nuxt UI v3/v4](https://ui.nuxt.com/) + [TailwindCSS v4](https://tailwindcss.com/)
 - **Base de Datos:** SQLite con [`@libsql/client`](https://github.com/tursodatabase/libsql-client-ts) (sin dependencias C++ nativas)
 - **ORM:** [Drizzle ORM](https://orm.drizzle.team/) (`drizzle-orm/libsql`) + [Drizzle Kit](https://orm.drizzle.team/kit-docs/overview)
-- **Lenguaje & Herramientas:** TypeScript, `tsx`, `zod`, `pnpm`
+- **Lenguaje & Herramientas:** TypeScript, `tsx`, `zod`, `bun`
 
 ---
 
@@ -55,7 +55,7 @@ nvm use --lts
 ### 2. Instalación de Dependencias
 
 ```bash
-pnpm install
+bun install
 ```
 
 > **Nota:** Al usar `@libsql/client`, la conexión a SQLite no utiliza binarios C++ nativos (`.node`), por lo que no sufrirás errores de versionado de Node (`NODE_MODULE_VERSION`) ni requerirás recompilaciones nativas al cambiar de versión de Node.js.
@@ -65,7 +65,7 @@ pnpm install
 Para insertar los productos y testimonios iniciales en `data/database.sqlite`:
 
 ```bash
-pnpm seed
+bun run seed
 ```
 
 ### 4. Servidor de Desarrollo
@@ -73,7 +73,7 @@ pnpm seed
 Inicia la aplicación en modo desarrollo en `http://localhost:3000`:
 
 ```bash
-pnpm dev
+bun run dev
 ```
 
 ### 5. Construcción y Producción
@@ -81,14 +81,14 @@ pnpm dev
 Para compilar y verificar el paquete de producción:
 
 ```bash
-pnpm build
-pnpm preview
+bun run build
+bun run preview
 ```
 
 ---
 
 ## 🗄️ Comandos de Base de Datos (Drizzle Kit)
 
-- **Push a la base de datos:** `pnpm db:push`
-- **Generar migraciones:** `pnpm db:generate`
-- **Abrir Drizzle Studio (interfaz visual):** `pnpm db:studio`
+- **Push a la base de datos:** `bun run db:push`
+- **Generar migraciones:** `bun run db:generate`
+- **Abrir Drizzle Studio (interfaz visual):** `bun run db:studio`

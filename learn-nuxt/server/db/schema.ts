@@ -33,6 +33,8 @@ export const products = sqliteTable("products", {
     .default(sql`(CURRENT_TIMESTAMP)`)
     // Se actualizará automáticamente, igual que en users
     .$onUpdate(() => sql`(CURRENT_TIMESTAMP)`),
+
+  deletedAt: text("deleted_at"),
 });
 
 

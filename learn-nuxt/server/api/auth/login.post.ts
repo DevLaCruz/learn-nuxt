@@ -1,7 +1,7 @@
-import { eq } from 'drizzle-orm'
-import bcrypt from 'bcryptjs'
-import { drizzle } from 'drizzle-orm/libsql';
-import {z} from 'zod'
+import { eq } from 'drizzle-orm';
+import bcrypt from 'bcryptjs';
+import { z } from 'zod';
+import { db } from '~~/server/utils/db';
 import { users } from '~~/server/db/schema';
 
 const bodySchema = z.object({
