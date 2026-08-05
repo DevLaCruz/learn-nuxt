@@ -163,7 +163,7 @@ const totalPrice = computed(() => {
     <USeparator class="my-10" icon="i-lucide-box" />
 
     <!-- Reviews -->
-    <ProductReviews />
+    <ProductReviews :slug="slug" />
 
     <!-- Related Products Section (optional) -->
     <div v-if="product" class="mt-16">
